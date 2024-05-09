@@ -771,8 +771,10 @@ typedef uint8_t uint8;
 #ifndef _tzset
 #define _tzset()
 #endif
+#ifndef WATERBOX
 #ifndef timezone
 #define timezone 0
+#endif
 #endif
 #ifndef _timezone
 #define _timezone 0

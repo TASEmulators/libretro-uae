@@ -393,13 +393,13 @@ static int oldm_axis[MAX_INPUT_DEVICES][MAX_INPUT_DEVICE_EVENTS];
 #define MOUSE_AXIS_TOTAL 4
 
 static uae_s16 mouse_x[MAX_JPORTS], mouse_y[MAX_JPORTS];
-static uae_s16 mouse_delta[MAX_JPORTS][MOUSE_AXIS_TOTAL];
+uae_s16 mouse_delta[MAX_JPORTS][MOUSE_AXIS_TOTAL];
 static uae_s16 mouse_deltanoreset[MAX_JPORTS][MOUSE_AXIS_TOTAL];
 static uae_s16 lightpen_delta[2][2];
 static uae_s16 lightpen_deltanoreset[2][2];
 static int lightpen_trigger2;
-static int joybutton[MAX_JPORTS];
-static int joydir[MAX_JPORTS];
+int joybutton[MAX_JPORTS];
+int joydir[MAX_JPORTS];
 static int joydirpot[MAX_JPORTS][2];
 static uae_s16 mouse_frame_x[MAX_JPORTS], mouse_frame_y[MAX_JPORTS];
 
@@ -409,7 +409,7 @@ int mouse_port[NORMAL_JPORTS];
 static int mouse_port[NORMAL_JPORTS];
 #endif
 static int cd32_shifter[NORMAL_JPORTS];
-#ifdef __LIBRETRO__
+#if defined(__LIBRETRO__) || defined(WATERBOX)
 int cd32_pad_enabled[NORMAL_JPORTS];
 #else
 static int cd32_pad_enabled[NORMAL_JPORTS];
@@ -3524,7 +3524,7 @@ static void readinput (void)
 	prev_input_vpos = vpos;
 }
 
-static void joymousecounter (int joy)
+void joymousecounter (int joy)
 {
 	int left = 1, right = 1, top = 1, bot = 1;
 	int b9, b8, b1, b0;

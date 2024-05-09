@@ -53,6 +53,9 @@ extern "C" {
 #  endif
 #endif
 
+#ifdef WATERBOX
+#define RETRO_API
+#else
 #ifndef RETRO_API
 #  if defined(_WIN32) || defined(__CYGWIN__) || defined(__MINGW32__)
 #    ifdef RETRO_IMPORT_SYMBOLS
@@ -75,6 +78,7 @@ extern "C" {
 #        define RETRO_API RETRO_CALLCONV
 #      endif
 #  endif
+#endif
 #endif
 
 /* Used for checking API/ABI mismatches that can break libretro

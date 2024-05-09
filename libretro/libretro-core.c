@@ -173,7 +173,7 @@ static int thisframe_y_adjust_old = -1;
 static int opt_horizontal_offset = 0;
 static bool opt_horizontal_offset_auto = true;
 static int retro_max_diwlastword_hires = 938;
-static int retro_max_diwlastword = 938;
+int retro_max_diwlastword = 938;
 extern int retro_min_diwstart;
 static int retro_min_diwstart_old = -1;
 extern int retro_max_diwstop;
@@ -513,7 +513,7 @@ static void ensure_output_audio_buffer_capacity(int32_t capacity)
    log_cb(RETRO_LOG_DEBUG, "Output audio buffer capacity set to %d\n", capacity);
 }
 
-static void init_output_audio_buffer(int32_t capacity)
+void init_output_audio_buffer(int32_t capacity)
 {
    output_audio_buffer.data = NULL;
    output_audio_buffer.size = 0;
@@ -529,7 +529,7 @@ static void free_output_audio_buffer()
    output_audio_buffer.capacity = 0;
 }
 
-static void upload_output_audio_buffer()
+void upload_output_audio_buffer()
 {
    audio_batch_cb(output_audio_buffer.data, output_audio_buffer.size / 2);
    output_audio_buffer.size = 0;
