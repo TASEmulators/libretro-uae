@@ -13,6 +13,7 @@
 #include "libretro.h"
 #include "libretro-glue.h"
 extern retro_log_printf_t log_cb;
+extern void (*LEDCallback)();
 
 void gui_disk_image_change (int unitnum, const TCHAR *name, bool writeprotected)
 {
@@ -55,6 +56,8 @@ void gui_fps (int fps, int idle, int color)
 
 void gui_led (int led, int on, int brightness)
 {
+    if (LEDCallback != 0)
+        LEDCallback();
 }
 
 void gui_hd_led (int led)
